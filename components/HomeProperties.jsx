@@ -1,16 +1,19 @@
 import React from 'react'
 import Link from 'next/link';
 import PropertyCard from './PropertyCard';
-import properties from '@/properties.json';
+import connectToDB from '@/config/database';
+import Property from '@/models/Property';
 
-export default function HomeProperties() {
-  const recentProperties = properties.slice(0,3);  
+export default async function HomeProperties() {
+ // const recentProperties = properties.slice(0,3);  
+  await connectToDB();
+  const recentProperties = await Property.find({}).sort({createdAt: -1}).limit(3)
   return (
     <>
         <section className="px-4 py-6">
             <h2 className="text-3xl font-bold  text-blue-500 mb-6 text-center">Recent Property</h2>
         <div className="container-xl lg:container m-auto px-4 py-6">
-            { properties.length === 0 ? (
+            { recentProperties.length === 0 ? (
                 <p>No properties found</p>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
