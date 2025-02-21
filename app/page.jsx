@@ -1,13 +1,15 @@
-import React from 'react'
-
-
+import React from "react";
+import Link from "next/link";
+import Hero from "@/components/Hero";
+import InfoBoxes from "@/components/InfoBoxes";
 
 const HomePage = () => {
-    return (
-        <div className='text-2xl'>Home page</div>
-    )
-}
+  return (
+    <>
+      <Hero />
+      <InfoBoxes />
+    </>
+  );
+};
 
-export default HomePage
-
-
+export default HomePage;
