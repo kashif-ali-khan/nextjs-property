@@ -26,7 +26,7 @@ export const authOptions = {
       const user = await User.findOne({ email: profile.email });
       // 3.if not create USER
       if (!user) {
-        User.create({
+        await User.create({
           email: profile.email,
           username: profile.name,
           picture: profile.picture,
@@ -36,16 +36,20 @@ export const authOptions = {
 
       return true;
     },
-    // session callback function tah modifies the sesison object
+    // session callback function that modifies the sesison object
     async session({ session }) {
       // 1.Get user form database
       const user = await User.findOne({ email: session.user.email }).lean();
+
+      if (!user) return session;
       // 2.Assign userid from database
       session.user.id = user._id.toString();
+      // session.user = user;
+      // session.kashif = user;
 
-      session.kashif = user;
       // 3. Return session
-      console.log(session,'FROM s', user)
+      //console.log(session,'FROM s', user)
+      console.log(session,'AFTER')
       return session;
     },
   },
