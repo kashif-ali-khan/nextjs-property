@@ -8,23 +8,24 @@ const UserSchema = new Schema(
       required: [true, "Email is required"],
     },
 
-    username:{
-        type: String,
-        required: [true, 'Username is required']
+    username: {
+      type: String,
+      required: [true, "Username is required"],
     },
     image: {
-        type: String
+      type: String,
     },
-    bookmarks:{
-        type:Schema.Types.ObjectId,
-        ref: 'Property'
-    }
-
+    bookmarks: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Property",
+      },
+    ],
   },
   {
     timestamps: true,
   }
 );
 
-const User = models.User || model('User', UserSchema);
+const User = models.User || model("User", UserSchema);
 export default User;

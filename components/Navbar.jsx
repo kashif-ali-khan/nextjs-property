@@ -180,7 +180,7 @@ export default function Navbar() {
                   >
                     <Link
                       href="/profile"
-                      onClick={()=>setIsProfileOpened((prev)=>!prev)}
+                      onClick={()=>setIsProfileOpened(false)}
                       className="block px-4 py-2 text-sm text-gray-700"
                       role="menuitem"
                       tabIndex="-1"
@@ -191,6 +191,7 @@ export default function Navbar() {
                     <Link
                       href="/properties/saved"
                       className="block px-4 py-2 text-sm text-gray-700"
+                      onClick={()=>setIsProfileOpened(false)}
                       role="menuitem"
                       tabIndex="-1"
                       id="user-menu-item-2"

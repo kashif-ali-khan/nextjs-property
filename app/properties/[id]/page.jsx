@@ -7,6 +7,9 @@ import { FaArrowLeft } from "react-icons/fa";
 import PropertyInfo from "@/components/PropertyInfo";
 
 export default async function PropertyByIdPage({ params, searchParams }) {
+  if (!params || !params.id) {
+    return <p className="text-center text-red-500">Invalid property ID</p>;
+  }
   await connectToDB();
   const property = await Property.findById(params.id).lean();
   return (

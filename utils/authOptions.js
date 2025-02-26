@@ -39,7 +39,7 @@ export const authOptions = {
     // session callback function that modifies the sesison object
     async session({ session }) {
       // 1.Get user form database
-      const user = await User.findOne({ email: session.user.email }).lean();
+      const user = await User.findOne({ email: session.user.email });
 
       if (!user) return session;
       // 2.Assign userid from database

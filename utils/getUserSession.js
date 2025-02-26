@@ -1,9 +1,12 @@
+import connectToDB from "@/config/database";
 import { getServerSession } from "next-auth/next";
-import authOptions from "@/utils/authOptions";
+//import User from "@/models/User";
+//import authOptions from "@/utils/authOptions";
 
 export const getSessionUser = async () => {
  
     const session = await getServerSession();
+
     console.log(session,'TESTETETET')
     if (!session || !session.user) {
       return null;

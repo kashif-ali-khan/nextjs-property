@@ -1,8 +1,9 @@
-'use client';
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import deleteProperty from "@/app/actions/PropertyDelete";
 import { useState } from "react";
+import { toast } from "react-toastify";
 const ProfileProperties = ({ properties: initialProperties }) => {
   const [properties, setProperties] = useState(initialProperties);
   const delProperty = async (propertyId) => {
@@ -11,7 +12,10 @@ const ProfileProperties = ({ properties: initialProperties }) => {
       return;
     } else {
       await deleteProperty(propertyId);
-      setProperties((properties)=>properties.filter(p=>p._id!==propertyId))
+      setProperties((properties) =>
+        properties.filter((p) => p._id !== propertyId)
+      );
+      toast.success("Property deleted successfully!!");
     }
   };
   return (
