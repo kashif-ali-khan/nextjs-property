@@ -38,7 +38,7 @@ async function addProperty(form) {
 
   const property = {
     owner: user._id,
-    name: form.get("type"),
+    name: form.get("name"),
     type: form.get("type"),
     description: form.get("description"),
     location: {

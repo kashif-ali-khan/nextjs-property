@@ -20,17 +20,27 @@ const ShareButtons = ({ property }) => {
         <FacebookShareButton
           shareUrl={shareUrl}
           quote={property.name}
-          hashtag={`#${property.type.replace(/\s/g,'')}forRent`}
+          hashtag={`#${property.type.replace(/\s/g, "")}forRent`}
         >
           <FacebookIcon width={40} round={true} />
         </FacebookShareButton>
-        <TwitterShareButton>
+        <TwitterShareButton
+          shareUrl={shareUrl}
+          title={property.name}
+          hashtags={[`#${property.type.replace(/\s/g, "")}forRent`]}
+        >
           <TwitterIcon width={40} round={true} />
         </TwitterShareButton>
-        <WhatsappShareButton>
+        <WhatsappShareButton  shareUrl={shareUrl}
+          title={property.name}
+          separator="::"
+          >
           <WhatsappIcon width={40} round={true} />
         </WhatsappShareButton>
-        <EmailShareButton>
+        <EmailShareButton  url={shareUrl}
+          subject={property.name}
+          body={`Check out this property ${shareUrl}`}
+          >
           <EmailIcon width={40} round={true} />
         </EmailShareButton>
       </div>
