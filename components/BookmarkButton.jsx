@@ -5,21 +5,29 @@ import bookmarkStatus from "@/app/actions/bookmarkStatus";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import Spinner from "@/components/Spinner";
+import { useSession } from "next-auth/react";
 const BookmarkButton = ({ property }) => {
+  const { data: session } = useSession();
   const [isBookmarked, setIsbookmarked] = useState(false);
   const [loading, setIsloading] = useState(false);
   const bkP = async () => {
+    if(!session){
+      toast.error('Please login first to bookmark property');
+      return;
+    }
     const status = await bookmarkProperty(property._id);
     setIsbookmarked(status.isBookmarked);
     toast.success(status.message);
   };
 
   useEffect(() => {
-    setIsloading(true);
-    bookmarkStatus(property._id).then((status) => {
-      setIsbookmarked(status);
-      setIsloading(false);
-    });
+    if (session) {
+      setIsloading(true);
+      bookmarkStatus(property._id).then((status) => {
+        setIsbookmarked(status);
+        setIsloading(false);
+      });
+    }
   }, [isBookmarked]);
 
   return (

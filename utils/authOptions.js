@@ -49,7 +49,6 @@ export const authOptions = {
 
       // 3. Return session
       //console.log(session,'FROM s', user)
-      console.log(session,'AFTER')
       return session;
     },
   },
