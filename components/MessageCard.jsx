@@ -44,7 +44,7 @@ const MessageCard = ({ message }) => {
       )}
       <h2 className="text-xl mb-4">
         <span className="font-bold">
-          Property Inquiry: {message.property?.name || "Unknown Property"}
+          Property Inquiry: {message.propertyName || "Unknown Property"}
         </span>
       </h2>
       <p className="text-gray-500">{message.body}</p>

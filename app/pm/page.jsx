@@ -21,7 +21,9 @@ const PmPage = async () => {
   // Simplify the serialization - only keep the data you need
   const sm = messages.map((message) => ({
     _id: message._id.toString(),
-    text: message.text || "",
+    body: message.body || "",
+    email: message.email,
+    phone: message.phone,
     propertyName: message.property ? message.property.name : "",
     senderName: message.sender ? message.sender.username : "",
     senderEmail: message.sender ? message.sender.email : "",
